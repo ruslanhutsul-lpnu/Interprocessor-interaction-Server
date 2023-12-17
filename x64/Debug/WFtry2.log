@@ -1,0 +1,18 @@
+﻿  MyForm.cpp
+B:\VSProjects\LR9_OS\server\MyForm.h(537,22): warning C4101: 'e': unreferenced local variable
+  (compiling source file 'MyForm.cpp')
+  
+B:\VSProjects\LR9_OS\server\MyForm.h(556,22): warning C4101: 'e': unreferenced local variable
+  (compiling source file 'MyForm.cpp')
+  
+B:\VSProjects\LR9_OS\server\MyForm.h(628,26): warning C4101: 'e': unreferenced local variable
+  (compiling source file 'MyForm.cpp')
+  
+B:\VSProjects\LR9_OS\server\MyForm.cpp(19,33): warning C4829: Possibly incorrect parameters to function main. Consider 'int main(Platform::Array<Platform::String^>^ argv)'
+  .NETFramework,Version=v4.7.2.AssemblyAttributes.cpp
+  Generating Code...
+B:\VSProjects\LR9_OS\server\MyForm.h(708): warning C4715: 'WFtry2::MyForm::IsUserInFile': not all control paths return a value
+B:\VSProjects\LR9_OS\server\MyForm.h(745): warning C4715: 'WFtry2::MyForm::IsLogIn': not all control paths return a value
+B:\VSProjects\LR9_OS\server\MyForm.h(780): warning C4715: 'WFtry2::MyForm::IsModer': not all control paths return a value
+  MyForm.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
+  WFtry2.vcxproj -> B:\VSProjects\LR9_OS\server\x64\Debug\WFtry2.exe
