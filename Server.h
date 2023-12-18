@@ -113,9 +113,6 @@ public:
 				// або працювати з цим клієнтом в циклі, обмінюючись даними
 				// Важливо обробляти помилки, закривати з'єднання при необхідності та чистити ресурси
 			}
-			/*else*/
-				/*MessageBox::Show("сюдааа");
-			MessageBox::Show("сюдааа");*/
 		}
 	}
 
@@ -171,7 +168,6 @@ public:
 			return "";
 		}
 	}
-
 
 	List<SOCKET>^ GetClientSockets() {
 		List<SOCKET>^ clientSockets = gcnew List<SOCKET>();

@@ -371,7 +371,6 @@ namespace WFtry2 {
 				
 			}
 			
-			
 		}
 
 		void OnTimerTick(System::Object^ source, System::Timers::ElapsedEventArgs^ e) {
@@ -397,10 +396,6 @@ namespace WFtry2 {
 					CheckMessenge(clientSocket, receivedMessage);
 				}
 				
-
-				// Update the text box with each received message
-				/*String^ messageToShow = gcnew String(receivedMessage);
-				textBox1->Invoke(gcnew Action<String^>(this, &MyForm::UpdateTextBox), messageToShow);*/
 			}
 		}
 
@@ -559,7 +554,6 @@ namespace WFtry2 {
 
 		}
 		
-
 		private: void DataGriedToModer(SOCKET moder) {
 			if (dataGridView2->Rows->Count == 0)
 				return;
@@ -585,49 +579,49 @@ namespace WFtry2 {
 			server->SendData(moder, charStr);
 		}
 
-			   private: void DataGriedToFile() {
-				   if (dataGridView2->Rows->Count == 0)
-					   return;
-				   // Оголошення String^ для зберігання даних
-				   String^ dataAsString = "";
+		private: void DataGriedToFile() {
+			if (dataGridView2->Rows->Count == 0)
+				return;
+			// Оголошення String^ для зберігання даних
+			String^ dataAsString = "";
 
-				   // Проходимо по всіх рядках у dataGridView1
-				   for each (DataGridViewRow ^ row in dataGridView2->Rows) {
-					   if (row->IsNewRow) continue;
+			// Проходимо по всіх рядках у dataGridView1
+			for each (DataGridViewRow ^ row in dataGridView2->Rows) {
+				if (row->IsNewRow) continue;
 
 
-					   for each (DataGridViewCell ^ cell in row->Cells) {
+				for each (DataGridViewCell ^ cell in row->Cells) {
 
-						   dataAsString += cell->Value->ToString() + " ";
-					   }
+					dataAsString += cell->Value->ToString() + " ";
+				}
 
-					   dataAsString += "\n";
-				   }
+				dataAsString += "\n";
+			}
 
-				  /* MessageBox::Show("Інформацію успішно записано у файл." + dataAsString);*/
+			/* MessageBox::Show("Інформацію успішно записано у файл." + dataAsString);*/
 
-				   try {
-					   /*MessageBox::Show("Інформацію успішно записано у файл.");*/
-					   /*array<String^>^ words = message->Split(' ');*/
-					   StreamWriter^ writer = gcnew StreamWriter(filePathIncoming);
+			try {
+				/*MessageBox::Show("Інформацію успішно записано у файл.");*/
+				/*array<String^>^ words = message->Split(' ');*/
+				StreamWriter^ writer = gcnew StreamWriter(filePathIncoming);
 
 					  
 
-					   /*MessageBox::Show("Інформацію успішно записано у файл." + dataAsString);*/
+				/*MessageBox::Show("Інформацію успішно записано у файл." + dataAsString);*/
 
-					   // Записуємо рядок у файл
-					   writer->WriteLine(dataAsString);
+				// Записуємо рядок у файл
+				writer->WriteLine(dataAsString);
 
-					   // Закриваємо файл
-					   writer->Close();
+				// Закриваємо файл
+				writer->Close();
 
-					   /*MessageBox::Show("Інформацію успішно записано у файл.");*/
-				   }
-				   catch (Exception^ e) {
-					   /*MessageBox::Show("Сталася помилка: {0}", e->Message);*/
+				/*MessageBox::Show("Інформацію успішно записано у файл.");*/
+			}
+			catch (Exception^ e) {
+				/*MessageBox::Show("Сталася помилка: {0}", e->Message);*/
 
-				   }
-			   }
+			}
+		}
 
 		private: void AddToList(String^ surname, String^ name, bool access) {
 			String^ moder = "Default";
@@ -801,61 +795,57 @@ namespace WFtry2 {
 
 		}
 
-			   private: void ServerLoadChat() {
-				   try {
+		private: void ServerLoadChat() {
+			try {
 
-					   StreamReader^ reader = gcnew StreamReader(filePathChat);
+				StreamReader^ reader = gcnew StreamReader(filePathChat);
 
-					   while (!reader->EndOfStream) {
-						   String^ line = reader->ReadLine();
-						   richTextBox1->Text += line + "\n";
+				while (!reader->EndOfStream) {
+					String^ line = reader->ReadLine();
+					richTextBox1->Text += line + "\n";
 
-					   }
-
-					   // Закриваємо файл
-					   reader->Close();
-					   
-				   }
-				   catch (Exception^ e) {
-					   Console::WriteLine("Сталася помилка2222: {0}", e->Message);
-				   }
-			   }
-
-				private: void ClientLoadChat(SOCKET client) {
-					marshal_context context;
-					String^ str = "LOADCHAT " + richTextBox1->Text;
-					const char* charStr = context.marshal_as<const char*>(str);
-					
-					server->SendData(client, charStr);
-					
 				}
 
+				// Закриваємо файл
+				reader->Close();
+					   
+			}
+			catch (Exception^ e) {
+				Console::WriteLine("Сталася помилка2222: {0}", e->Message);
+			}
+		}
 
-			   private: void PrintMessageToFile(String^ message)
-			   {
-				   try {
-
-					   StreamWriter^ writer = gcnew StreamWriter(filePathChat, true);
-
-
-					   // Записуємо рядок у файл
-					   writer->WriteLine(message);
-
-					   // Закриваємо файл
-					   writer->Close();
-
-					/*   MessageBox::Show("Інформацію успішно записано у файл.");*/
-				   }
-				   catch (Exception^ e) {
-					   MessageBox::Show("Сталася помилка: {0}", e->Message);
-
-				   }
-
-			   }
+		private: void ClientLoadChat(SOCKET client) {
+			marshal_context context;
+			String^ str = "LOADCHAT " + richTextBox1->Text;
+			const char* charStr = context.marshal_as<const char*>(str);
+					
+			server->SendData(client, charStr);
+					
+		}
 
 
+		private: void PrintMessageToFile(String^ message)
+		{
+			try {
+
+				StreamWriter^ writer = gcnew StreamWriter(filePathChat, true);
 
 
+				// Записуємо рядок у файл
+				writer->WriteLine(message);
+
+				// Закриваємо файл
+				writer->Close();
+
+			/*   MessageBox::Show("Інформацію успішно записано у файл.");*/
+			}
+			catch (Exception^ e) {
+				MessageBox::Show("Сталася помилка: {0}", e->Message);
+
+			}
+
+		}
 
 		private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
 		}
