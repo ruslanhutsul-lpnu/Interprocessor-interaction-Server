@@ -795,61 +795,57 @@ namespace WFtry2 {
 
 		}
 
-			   private: void ServerLoadChat() {
-				   try {
+		private: void ServerLoadChat() {
+			try {
 
-					   StreamReader^ reader = gcnew StreamReader(filePathChat);
+				StreamReader^ reader = gcnew StreamReader(filePathChat);
 
-					   while (!reader->EndOfStream) {
-						   String^ line = reader->ReadLine();
-						   richTextBox1->Text += line + "\n";
+				while (!reader->EndOfStream) {
+					String^ line = reader->ReadLine();
+					richTextBox1->Text += line + "\n";
 
-					   }
-
-					   // Закриваємо файл
-					   reader->Close();
-					   
-				   }
-				   catch (Exception^ e) {
-					   Console::WriteLine("Сталася помилка2222: {0}", e->Message);
-				   }
-			   }
-
-				private: void ClientLoadChat(SOCKET client) {
-					marshal_context context;
-					String^ str = "LOADCHAT " + richTextBox1->Text;
-					const char* charStr = context.marshal_as<const char*>(str);
-					
-					server->SendData(client, charStr);
-					
 				}
 
+				// Закриваємо файл
+				reader->Close();
+					   
+			}
+			catch (Exception^ e) {
+				Console::WriteLine("Сталася помилка2222: {0}", e->Message);
+			}
+		}
 
-			   private: void PrintMessageToFile(String^ message)
-			   {
-				   try {
-
-					   StreamWriter^ writer = gcnew StreamWriter(filePathChat, true);
-
-
-					   // Записуємо рядок у файл
-					   writer->WriteLine(message);
-
-					   // Закриваємо файл
-					   writer->Close();
-
-					/*   MessageBox::Show("Інформацію успішно записано у файл.");*/
-				   }
-				   catch (Exception^ e) {
-					   MessageBox::Show("Сталася помилка: {0}", e->Message);
-
-				   }
-
-			   }
+		private: void ClientLoadChat(SOCKET client) {
+			marshal_context context;
+			String^ str = "LOADCHAT " + richTextBox1->Text;
+			const char* charStr = context.marshal_as<const char*>(str);
+					
+			server->SendData(client, charStr);
+					
+		}
 
 
+		private: void PrintMessageToFile(String^ message)
+		{
+			try {
+
+				StreamWriter^ writer = gcnew StreamWriter(filePathChat, true);
 
 
+				// Записуємо рядок у файл
+				writer->WriteLine(message);
+
+				// Закриваємо файл
+				writer->Close();
+
+			/*   MessageBox::Show("Інформацію успішно записано у файл.");*/
+			}
+			catch (Exception^ e) {
+				MessageBox::Show("Сталася помилка: {0}", e->Message);
+
+			}
+
+		}
 
 		private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
 		}

@@ -169,7 +169,6 @@ public:
 		}
 	}
 
-
 	List<SOCKET>^ GetClientSockets() {
 		List<SOCKET>^ clientSockets = gcnew List<SOCKET>();
 		for each (SOCKET clientSocket in ClientSockets) {
