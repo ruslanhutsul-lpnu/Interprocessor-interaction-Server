@@ -523,13 +523,11 @@ namespace WFtry2 {
 				array<String^>^ words = message->Split(' ');
 				StreamWriter^ writer = gcnew StreamWriter(filePathIncoming, true);
 
-				// Рядок, який будемо записувати
 				String^ textToWrite = words[1] + " " + words[2] + " " + words[3] + " " + words[4] + " " + JoinWordsFromIndex(words, 5);
 
-				// Записуємо рядок у файл
 				writer->WriteLine(textToWrite);
 
-				// Закриваємо файл
+			
 				writer->Close();
 
 				/*MessageBox::Show("Інформацію успішно записано у файл.");*/
